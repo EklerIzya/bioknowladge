@@ -16,7 +16,7 @@ public class TheoryFragment extends Fragment {
 
 
     public TheoryFragment() {
-        // Required empty public constructor
+
     }
 
 
