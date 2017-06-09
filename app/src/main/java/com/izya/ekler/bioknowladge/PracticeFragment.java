@@ -35,7 +35,7 @@ public class PracticeFragment extends Fragment {
     private static String q;
 
     public PracticeFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -51,12 +51,10 @@ public class PracticeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View res = inflater.inflate(R.layout.fragment_practice, container, false);
         rv = (RecyclerView) res.findViewById(R.id.recycler);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //rv.setAdapter(new TestsAdapter(getActivity(),data));
         return res;
 
     }

@@ -1,6 +1,7 @@
 package com.izya.ekler.bioknowladge;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,10 +40,12 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
 
         private ViewHolder holder;
         private String answer;
+        private InputMethodManager imm;
 
         public mListner(ViewHolder holder,String answer){
             this.holder = holder;
             this.answer = answer;
+            imm  = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         }
 
         @Override
@@ -60,6 +64,8 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
             {
                 holder.cardView.setBackgroundColor(Color.parseColor("#DDFFDB"));
                 holder.editText.setKeyListener(null);
+                imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
             }
         }
     }
