@@ -12,22 +12,11 @@
         android:layout_height="wrap_content">
 
 
-
-         <TextView
-             android:id="@+id/title1"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:gravity="center"
-             android:textColor="#000000"
-             android:textSize="25dp"
-             tools:text="МоЗГ" />
-
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/title1"
             tools:src="@mipmap/ic_launcher" />
 
         <TextView
