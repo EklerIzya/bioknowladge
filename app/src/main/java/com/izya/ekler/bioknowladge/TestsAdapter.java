@@ -1,8 +1,11 @@
 package com.izya.ekler.bioknowladge;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +15,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by Анна on 09.06.2017.
@@ -24,15 +25,44 @@ import java.util.List;
 public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> {
 
     private Activity activity;
-    private List<HashMap<String,String>> data;
+    private HashMap<String,String>[] data;
 
 
-    public TestsAdapter(Activity activity,List<HashMap<String,String>> data) {
+    public TestsAdapter(Activity activity,HashMap<String,String>[] data) {
         this.activity = activity;
         this.data = data;
     }
 
 
+    class mListner implements TextWatcher{
+
+        private ViewHolder holder;
+        private String answer;
+
+        public mListner(ViewHolder holder,String answer){
+            this.holder = holder;
+            this.answer = answer;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (answer.equals(s.toString()))
+            {
+                holder.cardView.setBackgroundColor(Color.parseColor("#DDFFDB"));
+                holder.editText.setKeyListener(null);
+            }
+        }
+    }
 
 
     @Override
@@ -44,14 +74,16 @@ public class TestsAdapter extends RecyclerView.Adapter<TestsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.text.setText(data.get(position).get("q"));
-        Picasso.with(activity).load(data.get(position).get("img")).into(holder.pic);
+        holder.text.setText(data[position].get("question"));
+        if (!data[position].get("img").equals(""))
+        Picasso.with(activity).load(data[position].get("img")).into(holder.pic);
+        holder.editText.addTextChangedListener(new mListner(holder,data[position].get("answer")));
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return data.length;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

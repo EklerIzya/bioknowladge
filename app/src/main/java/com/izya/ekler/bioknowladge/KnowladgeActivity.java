@@ -76,8 +76,10 @@ public class KnowladgeActivity extends AppCompatActivity {
                 return theoryFragment;
             }
             else {
-                if (practiceFragment == null)
-                practiceFragment = new PracticeFragment();
+                if (practiceFragment == null) {
+                    practiceFragment = new PracticeFragment();
+                    practiceFragment.setQ(title);
+                }
                 return practiceFragment;
             }
         }

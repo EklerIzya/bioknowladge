@@ -37,7 +37,7 @@ public class TheoryFragment extends Fragment {
     private ImageView img2;
 
     private Activity activity;
-    private String q;
+    private static String q;
 
     public TheoryFragment() {
 
