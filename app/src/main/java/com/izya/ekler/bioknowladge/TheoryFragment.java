@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +90,7 @@ public class TheoryFragment extends Fragment {
         protected HashMap<String,String> doInBackground(Void... params) {
             try {
                 Scanner in = new Scanner(new URL("http://shvedcom.esy.es/bio/getInfo.php?title="+ URLEncoder.encode(query)).openConnection().getInputStream());
-                JSONObject jsonObject = new JSONObject(in.nextLine());
+                JSONObject jsonObject = new JSONObject(in.nextLine().replaceAll("\"","\\\""));
                 HashMap<String,String> res = new HashMap<>();
                 res.put("text1",jsonObject.getString("text1"));
                 res.put("text2",jsonObject.getString("text2"));
@@ -110,7 +109,6 @@ public class TheoryFragment extends Fragment {
         protected void onPostExecute(HashMap<String,String> strings) {
             super.onPostExecute(strings);
             pd.dismiss();
-            Log.i("kek",strings.toString());
             if (strings!=null) {
                 text1.setText(strings.get("text1"));
                 text2.setText(strings.get("text2"));

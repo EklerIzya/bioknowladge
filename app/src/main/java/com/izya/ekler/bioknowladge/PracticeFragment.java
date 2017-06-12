@@ -80,6 +80,7 @@ public class PracticeFragment extends Fragment {
             pd = new ProgressDialog(activity);
             pd.setMessage("Загрузка");
             pd.show();
+
         }
 
         @Override
